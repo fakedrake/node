@@ -133,6 +133,7 @@ static bool v8_is_profiling = false;
 static node_module* modpending;
 static node_module* modlist_builtin;
 static node_module* modlist_addon;
+static bool debug_with_gud = false;
 
 // used by C++ modules as well
 bool no_deprecation = false;
@@ -2858,6 +2859,8 @@ static bool ParseDebugOpt(const char* arg) {
     port = arg + sizeof("--debug-brk=") - 1;
   } else if (!strncmp(arg, "--debug-port=", sizeof("--debug-port=") - 1)) {
     port = arg + sizeof("--debug-port=") - 1;
+  } else if (!strcmp(arg, "--debug-gud")) {
+    debug_with_gud = true;
   } else {
     return false;
   }
